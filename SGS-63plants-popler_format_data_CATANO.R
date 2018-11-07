@@ -91,26 +91,27 @@ length(unique(comm.long$rep)) #210 unique samples
 #comm.long$rep2 <- paste(comm.long$WEB, "_", comm.long$KIND, "_", comm.long$TRANS)
 #length(unique(comm.long$rep2)) #21 unique transects
 
-# CONSIDERATION: Should transect or point be level of replication (Transect)
+# CONSIDERATION: Should transect or point be level of replication (points)
 
+# code commented out bleow was used to check taxa id mismatches.
 # Make vector of unique species
-spec_list <- unique(comm.long$SPECIES)
+#spec_list <- unique(comm.long$SPECIES)
 
 # Import species list from https://mountainscholar.org/handle/10217/80451 to compare for
 # species ID discrepancies
-official_sp_list <- read.csv("C:/Users/Chris/Desktop/Research/metacommunity_group/sgs_species_list_plants.csv")
+#official_sp_list <- read.csv("C:/Users/Chris/Desktop/Research/metacommunity_group/sgs_species_list_plants.csv")
 
 # Compare official_sp_list with species IDs in comm.long to find mismatches
 # First make all codes upper case to avoid case sensitive issues
-official_sp_list$spe_code_upper <- toupper(official_sp_list$spe_code)
+#official_sp_list$spe_code_upper <- toupper(official_sp_list$spe_code)
 comm.long$SPECIES_upper <- toupper(comm.long$SPECIES)
 length(unique(comm.long$SPECIES_upper)) # 118 species (many species codes are inconsistant, must be reconciled)
 
-sp_check <- official_sp_list$spe_code_upper
+#sp_check <- official_sp_list$spe_code_upper
 
-spec_list2 <- toupper(spec_list)
-mismatch <- spec_list2[!(spec_list2 %in% sp_check)]
-match <- spec_list2[spec_list2 %in% sp_check]
+#spec_list2 <- toupper(spec_list)
+#mismatch <- spec_list2[!(spec_list2 %in% sp_check)]
+#match <- spec_list2[spec_list2 %in% sp_check]
 
 # output file with all mismatches
 # write.csv(mismatch, file = "C:/Users/Chris/Desktop/Research/metacommunity_group/sgs_spec_mismatch.csv")
